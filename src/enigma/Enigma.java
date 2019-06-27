@@ -149,15 +149,6 @@ public class Enigma {
 	}
 
 	/**
-	 * Set the plugboard
-	 * @param plugboard
-	 */
-	public void insertPlugboardWire(char a, char b) {
-		this.plugboard[a - 'A'] = b - 'A';
-		this.plugboard[b - 'A'] = a - 'A';
-	}
-	
-	/**
 	 * Remove a wire from the plugboard
 	 * @param wire
 	 */
@@ -222,7 +213,37 @@ public class Enigma {
 	public Reflector getReflector() {
 		return reflector;
 	}
+	
+	/**
+	 * Set plugboard
+	 * @param plugboard
+	 */
+	public void insertPlugboardWire(char a, char b) {
+		this.plugboard[a - 'A'] = b - 'A';
+		this.plugboard[b - 'A'] = a - 'A';
+	}
+	
+	/**
+	 * Unset value from Plug Board
+	 * @param wire
+	 */
+	public void removePLugboardWire(char a) {
+		this.plugboard[this.plugboard[a - 'A']] = -1;
+		this.plugboard[a - 'A'] = -1;
+	}
 
+	/**
+	 * Get the linked wire to 'a'
+	 * @param a
+	 * @return int 
+	 */
+	public int getPLugboardOf(int a) {
+		return this.plugboard[a];
+	}
+	
+	/**
+	 * Reset machine
+	 */
 	public void resetRotation() {
 		leftRotor.reset();
 		centerRotor.reset();
